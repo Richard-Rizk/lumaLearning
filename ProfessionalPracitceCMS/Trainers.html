@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark-mode">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Luma</title>
+
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
+        rel="stylesheet">
+
+    <!-- Preloader -->
+    <link type="text/css" href="public/vendor/spinkit.css" rel="stylesheet">
+
+    <!-- Perfect Scrollbar -->
+    <link type="text/css" href="public/vendor/perfect-scrollbar.css" rel="stylesheet">
+
+    <!-- Material Design Icons -->
+    <link type="text/css" href="public/css/material-icons.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link type="text/css" href="public/css/fontawesome.css" rel="stylesheet">
+
+    <!-- Preloader -->
+    <link type="text/css" href="public/css/preloader.css" rel="stylesheet">
+
+    <!-- App CSS -->
+    <link type="text/css" href="public/css/app.css" rel="stylesheet">
+
+    <!-- Dark Mode CSS -->
+    <link type="text/css" href="public/css/dark.css" rel="stylesheet">
+
+    <!-- my css styles -->
+    <link rel="stylesheet" href="myCss/mine.css">
+
+    <!-- my added bootstrap.css -->
+    <!-- <link rel="stylesheet" type="text/css" href="myCss/bootstrap.css"> -->
+</head>
+
+<body class="layout-app ">
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="modal-content bg-dark" id="myForm">
+                <div class="d-flex justify-content-between w-100 p-3">
+                    <!-- Close button at the left end -->
+                    <h3 class="modal-title " id="exampleModalLabel">Trainer</h1>
+                        <button type="button" class="btn-close btn-close-white " data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="UserId" name="UserId" value="-1" hidden>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control input-text" id="FirstName"
+                            placeholder="Enter name" name="FirstName">
+                        <label for="FirstName">First Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control input-text" id="LastName"
+                            placeholder="Enter last name" name="LastName">
+                        <label for="LastName">Last Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control input-text" id="Tel"
+                            placeholder="Enter Tel" name="Tel">
+                        <label for="Tel">Tel</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control input-text" id="Email"
+                            placeholder="Enter email" name="Email">
+                        <label for="Email">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="hidden" class="form-control" id="isActive" name="IsActive" value="1">
+                    </div>
+                    <div class="toggle-icon" id="toggleButton">
+                        <div class="label-box">Active</div>
+                        <i id="icon" class="fa fa-check"></i>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="save">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="sk-chase">
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+        </div>
+    </div>
+
+    <!-- Drawer Layout -->
+    <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
+        <div class="mdk-drawer-layout__content page-content">
+            <!-- Header -->
+            <div id="myHeader"></div>
+            <!-- // END Header -->
+
+            <!-- Page Content -->
+            <div class="mdk-box mdk-box--bg-primary bg-dark js-mdk-box mb-0"
+                data-effects="parallax-background blend-background">
+                <div class="mdk-box__bg">
+                    <div class="mdk-box__bg-front"
+                        style="background-image: url(public/images/1280_work-station-straight-on-view.jpg);">
+                    </div>
+                </div>
+                <div class="mdk-box__content justify-content-center">
+                    <div class="hero container page__container text-center py-112pt">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="page-separator w-100">
+                                <div class="page-separator__text">Trainers</div>
+                            </div>
+                            <button type="button" class="btn btn-primary ml-2 bg-dark" data-bs-toggle="modal"
+                                data-bs-target="#myModal" id="btnAdd">New</button>
+                        </div>
+
+                        <div class="card table-responsive mb-24pt" style="padding-top: 20px; overflow: hidden;">
+                            <table id="tbl" class="table table-flush table--elevated">
+                                <thead class="table-headings">
+                                    <tr>
+                                        <th>Trainer</th>
+                                        <th>Last Name</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>Active</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>Courses</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="myFooter"></div>
+        </div>
+        <!-- // END drawer-layout__content -->
+
+        <!-- Drawer -->
+        <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
+            <div class="mdk-drawer__content">
+                <div class="sidebar sidebar-black-dodger-blue sidebar-left" data-perfect-scrollbar>
+                    <div id="mySidebar"></div>
+                    <!-- Sidebar Content -->
+                </div>
+            </div>
+            <!-- // END Drawer -->
+        </div>
+    </div>
+    <!-- // END Drawer Layout -->
+
+    <!-- Header -->
+    <script src="components/header.js"></script>
+
+    <!-- Footer -->
+    <script src="components/footer.js"></script>
+
+    <!-- sidebar -->
+    <script src="components/sidebar.js"></script>
+
+    <!-- jQuery -->
+    <script src="public/vendor/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="myJS/bootstrap.bundle.min.js"></script>
+    <script src="public/vendor/popper.min.js"></script>
+    <script src="public/vendor/bootstrap.min.js"></script>
+
+    <!-- Perfect Scrollbar -->
+    <script src="public/vendor/perfect-scrollbar.min.js"></script>
+
+    <!-- DOM Factory -->
+    <script src="public/vendor/dom-factory.js"></script>
+
+    <!-- MDK -->
+    <script src="public/vendor/material-design-kit.js"></script>
+
+    <!-- App JS -->
+    <script src="public/js/app.js"></script>
+
+    <!-- Preloader -->
+    <script src="public/js/preloader.js"></script>
+
+    <!-- added scripts not included in template -->
+    <!-- Datatable js-->
+    <script src="myJS/datatables/jquery.dataTables.min.js"></script>
+    <script src="myJS/datatables/custom-basic.js"></script>
+    <script src="myJS/QueryStringDivider.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            var numRows = 0; // number of rows for a datatable
+            document.getElementById('toggleButton').addEventListener('click', function () {
+                var icon = this.querySelector('i');
+
+                // Toggle between X and check mark icons
+                if (icon.classList.contains('fa-times')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-check');
+                } else {
+                    icon.classList.remove('fa-check');
+                    icon.classList.add('fa-times');
+                }
+
+                // You can add logic here to handle the boolean value based on the icon state
+                $('#isActive').val(icon.classList.contains('fa-times') ? 0 : 1);
+                // console.log('Boolean Value:', booleanValue);
+            });
+
+            var url;
+            url = "api/";
+
+
+            var dataTable = $('#tbl').DataTable({
+
+                "ajax": {
+                    url: url + "webUser.php?status=data",
+                    "dataSrc": "data",
+                    type: "POST",
+                },
+                destroy: true,
+                "deferRender": true,
+                "columns": [
+                    { data: "FirstName" },
+                    { data: "LastName" },
+                    { data: "Tel" },
+                    { data: "Email" },
+                    {
+                        data: "isActive",
+
+                        render: function (data, type, row) {
+                            return data == 0 ? `<div class = "fa fa-times close-mark"><div>` : '<div class="fa fa-check check-mark"><div>'
+                        }
+                    },
+                    {
+                        "data": "UserId",
+                        render: function (data, type, row) {
+                            return `<span class='edit' data-id= ${data} data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-edit"></i></span>`;
+                        }
+                    },
+                    {
+                        "data": "UserId",
+                        render: function (data, type, row) {
+                            return `<span class='delete' data-id=` + data + ` ><i class="fa fa-trash"></i></span>`;
+                        }
+                    },
+                    {
+                        "data": "UserId",
+                        render: function (data, type, row) {
+                            return `<button class='trainerCourse' data-id=` + data + ` >view course</button>`;
+                        }
+                    }
+                ],
+                initComplete: function (settings, json) {
+
+
+                    // You can access the DataTable instance using `this`
+                    // var dataTable = this;
+
+                    // For example, you can get the number of rows
+                    var numRows = dataTable.rows().count();
+
+                    setNumberOfRows(numRows);
+                }
+            });
+
+            function setNumberOfRows(n) {
+                $('#nbrOfPortals').html(n);
+            }
+
+            $('#myModal').on('shown.bs.modal', function () {
+                // Set focus to the input when the modal is shown and select the text
+                $('#FirstName').focus();
+                $('#FirstName').select();
+            });
+
+            $('#tbl tbody').on('click', '.edit', function () {
+        var id = $(this).data("id");
+        var row = dataTable.row($(this).parents('tr'));
+        var rowData = row.data();
+        displayPortal(id, rowData.FirstName, rowData.LastName, rowData.Tel, rowData.Email, rowData.isActive);
+    });
+
+            $('#tbl tbody').on('click', '.delete', function () {
+                if (confirm("Are your sure you want to delete?")) {
+                    var row = $(this).parents('tr');
+                    var id = $(this).data("id");
+                    var str = "id=" + id + "&status=delete";
+                    $.ajax({
+                        url: url + 'webUser.php?status=delete&id=' + id,
+                        data: str, type: 'post', dataType: 'json',
+                        success: function (Arr) {
+                            dataTable.row(row).remove().draw();
+                        },
+                        error: function (E) { alert(E.status + E.statusText) }
+                    });
+                }
+            });
+
+            $('#tbl tbody').on('click', '.trainerCourse', function () {
+                var row = $(this).parents('tr');
+                var TrainerId = $(this).data("id");
+                console.log("clicked on view courses","TrainerId=",TrainerId)
+                //  var str ="&status=coursesByTRainer";
+                // $.ajax({
+                //     url: url + 'vwCourses.php',
+                //     data: str,
+                //     type: 'post',
+                //     dataType: 'json',
+                //     success: function (Arr) {
+                //         console.log(Arr)
+                //         var CourseId = Arr[0].CourseId; // Assuming TrainerId is the correct key in your data structure
+                //         var newPageUrl = "TrainerCourse.html?TrainerId=" + CourseId+str;
+                //         window.location.href = newPageUrl;
+        
+                //     },
+                //     error: function (E) {
+                //         console.log("clicked error")
+                //         alert(E.responseText);
+                        
+                //     }
+                var newPageUrl ="TrainerCourse.html?TrainerId="+TrainerId+"&status=coursesByTRainer";
+                        window.location.href = newPageUrl;
+                // // console.log("url=",newPageUrl)
+            });
+        
+            $('#btnAdd').on('click', function () {
+                displayPortal(-1, '', '', '', '', 1);
+            });
+
+            function displayPortal(UserId, FirstName, LastName, Tel, Email, isActive) {
+                $('#UserId').val(UserId);
+                $('#FirstName').val(FirstName);
+                $('#LastName').val(LastName);
+                $('#Tel').val(Tel);
+                $('#Email').val(Email);
+                $('#isActive').val(isActive);
+                var icon = document.getElementById('icon');
+                if (isActive == 1) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-check');
+                } else {
+                    icon.classList.add('fa-times');
+                    icon.classList.remove('fa-check');
+                }
+            }
+
+            $('#myForm').on('submit', function (e) {
+    e.preventDefault(); // Prevent default form submission
+
+    // Get form data
+    var formData = new FormData(this);
+    
+    // Get UserId from hidden input field
+    var id = $('#UserId').val();
+    console.log(id)
+    // Determine status based on UserId
+    var status = (id == -1) ? 'new' : 'update';
+    
+    // Append status to form data
+    formData.append('status', status);
+    
+    // AJAX request
+    $.ajax({
+        url: url + 'webUser.php', // PHP script URL
+        data: formData, // Form data to be sent
+        type: 'post', // HTTP method
+        dataType: 'json', // Expected data type of response
+        processData: false, // Don't process data (already in FormData)
+        contentType: false, // Don't set content type (let the browser handle it)
+        success: function (response) {
+            // Update row data with new values
+            var newRowData = {
+                UserId: id,
+                FirstName: $('#FirstName').val(),
+                LastName: $('#LastName').val(),
+                Tel: $('#Tel').val(),
+                Email: $('#Email').val(),
+                isActive: $('#isActive').val(),
+            };
+console.log("success")
+            // Find row index based on UserId
+            var rowIndex = dataTable.row(function (idx, data, node) {
+                return data['UserId'] == id;
+            })[0][0];
+
+            // Update row data in DataTable and redraw
+            dataTable.row(rowIndex).data(newRowData).draw();
+
+            // Hide modal
+            $('#myModal').modal('hide');
+        },
+        error: function (xhr, status, error) {
+            // Display error message if request fails
+            alert('Error: ' + error);
+        }
+    });
+});
+
+    });
+
+        
+    </script>
+</body>
+
+</html>
